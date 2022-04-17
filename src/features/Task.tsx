@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useQueries, useQuery } from "react-query";
+import { useIsFetching, useQueries, useQuery, useQueryClient } from "react-query";
 import { useGetTodo, useUpdateTodo } from "../hooks/todo";
 import { getTodo, getUser } from "../services/todo";
 
@@ -9,6 +9,7 @@ export function Task(props: Props) {
     const todoId = '1';
     const userId = 'tt';
     const [isStart, setIsStart] = useState(false);
+    const qc = useQueryClient()
 
     // get 
     const { data, isLoading, isFetching, status: qs } = useGetTodo(todoId);
@@ -34,6 +35,8 @@ export function Task(props: Props) {
         enabled: isStart
     })
 
+    const fetchingCount = useIsFetching(['/get/todo', todoId]);
+
     useEffect(() => {
         setTimeout(() => {
             setIsStart(true)
@@ -43,13 +46,20 @@ export function Task(props: Props) {
         }
     }, []);
 
-    console.log(`并行查询`, useQs);
-    console.log(`依赖查询`, status, userData)
+    // console.log(`并行查询`, useQs);
+    // console.log(`依赖查询`, status, userData, fetchingCount)
+
+    console.log('todo', qs, data)
 
     return <div>
-        <div onClick={() => mutate({ id: '1', name: `baidu ${Math.random()}` })}>{isLoading ? 'loading' : data?.name}</div>
-        <div>{isFetching ? 'isFetching' : ''}</div>
+        <div onClick={() => mutate({ id: '1', name: `baidu ${Math.random()}` })}>点我更新数据：{isLoading ? 'loading' : data?.name}</div>
+        {/* <div>{isFetching ? 'isFetching' : ''}</div>
         <div>{qs}</div>
-        <div>{ms}</div>
+       
+        <div>fetchingCount: {fetchingCount}</div> */}
+        <div>修改状态：{ms}</div>
+        <div onClick={() => {
+            qc.setQueryData(['/get/todo', todoId], { id: '1', name: 'hhh' })
+        }}>点我本地更新数据</div>
     </div>;
 }

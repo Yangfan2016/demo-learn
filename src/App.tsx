@@ -15,13 +15,16 @@ const queryClient = new QueryClient({
     }
   }
 });
-
+// @ts-ignore
+window.qc = queryClient;
 function App() {
   const [key, setKey] = useState('1');
   return (
     <QueryClientProvider client={queryClient}>
       <div className="App">
-        <header className="App-header" onClick={() => setKey(`1-${Math.random()}`)}>
+        <header className="App-header"
+        //  onClick={() => setKey(`1-${Math.random()}`)}
+        >
           <img src={logo} className="App-logo" alt="logo" />
           <Task key={key} />
           <List />

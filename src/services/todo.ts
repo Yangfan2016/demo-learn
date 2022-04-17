@@ -25,6 +25,12 @@ const users: IUser = {
     'tt': { name: '兔兔' },
 }
 
+// @ts-ignore
+window.mock = {
+    todos,
+    users
+}
+
 function sleep(seconds: number) {
     return new Promise((rs, rj) => {
         setTimeout(() => rs(''), seconds * 1e3);
@@ -34,21 +40,21 @@ function sleep(seconds: number) {
 
 export async function getTodo(id: string) {
     await sleep(1);
-    const t = Math.random();
-    if (1 || t > 0.5) {
-        console.log(new Date())
-        throw new Error(`getTodo: sth is err ${t}`);
-    }
+    // const t = Math.random();
+    // if (1 || t > 0.5) {
+    //     console.log(new Date())
+    //     throw new Error(`getTodo: sth is err ${t}`);
+    // }
     console.count('api-----getTodo')
     return todos.find(item => item.id === id);
 }
 
 export async function updateTodo(patch: Partial<ITodo>) {
     await sleep(1);
-    const t = Math.random()
-    if (t > 0.5) {
-        throw new Error(`updateTodo: sth is err ${t}`);
-    }
+    // const t = Math.random()
+    // if (t > 0.5) {
+    //     throw new Error(`updateTodo: sth is err ${t}`);
+    // }
     todos = todos.map(item => {
         if (item.id === patch.id) {
             return {
