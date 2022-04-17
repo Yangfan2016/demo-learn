@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# demo-react-query
 
-demo-react-query
+
 ![image](https://user-images.githubusercontent.com/17830872/163711653-9073fdf9-1161-4c0b-85a4-490f4157cb60.png)
 
 docs: https://cangsdarm.github.io/react-query-web-i18n/ 
