@@ -5,6 +5,10 @@ export interface ITodo {
     name: string
 }
 
+export interface IUser {
+    [key: string]: Record<string, any>
+}
+
 let todos: ITodo[] = [
     {
         name: 'baidu',
@@ -16,6 +20,10 @@ let todos: ITodo[] = [
     }
 ]
 
+const users: IUser = {
+    'zh': { name: '张三' },
+    'tt': { name: '兔兔' },
+}
 
 function sleep(seconds: number) {
     return new Promise((rs, rj) => {
@@ -25,13 +33,22 @@ function sleep(seconds: number) {
 
 
 export async function getTodo(id: string) {
-    console.count('api-----getTodo')
     await sleep(1);
+    const t = Math.random();
+    if (1 || t > 0.5) {
+        console.log(new Date())
+        throw new Error(`getTodo: sth is err ${t}`);
+    }
+    console.count('api-----getTodo')
     return todos.find(item => item.id === id);
 }
 
 export async function updateTodo(patch: Partial<ITodo>) {
-    console.count('api-----updateTodo')
+    await sleep(1);
+    const t = Math.random()
+    if (t > 0.5) {
+        throw new Error(`updateTodo: sth is err ${t}`);
+    }
     todos = todos.map(item => {
         if (item.id === patch.id) {
             return {
@@ -41,5 +58,11 @@ export async function updateTodo(patch: Partial<ITodo>) {
         }
         return item;
     });
+    console.count('api-----updateTodo')
+}
+
+export async function getUser(id: string) {
     await sleep(1);
+    console.count('api-----getUser')
+    return users[id];
 }
