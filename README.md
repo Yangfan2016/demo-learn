@@ -1,8 +1,9 @@
 # Getting Started with Create React App
 
-demo
+demo-react-query
+![image](https://user-images.githubusercontent.com/17830872/163711653-9073fdf9-1161-4c0b-85a4-490f4157cb60.png)
 
-react-query
+docs: https://cangsdarm.github.io/react-query-web-i18n/ 
 
 ## Available Scripts
 
@@ -15,3 +16,5 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
+
+
